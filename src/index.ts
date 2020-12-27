@@ -295,6 +295,19 @@ interface UserSmall {
   username: string;
 }
 
+interface UserSmallGroups extends UserSmall {
+  groups: {
+    id: number;
+    identifier: string;
+    name: string;
+    short_name: string;
+    description: string;
+    colour: string;
+    playmodes: null;
+    is_probationary: boolean;
+  }[];
+}
+
 interface UserShort {
   avatar_url: string;
   country_code: string;
@@ -804,6 +817,14 @@ interface V2BeatmapSetObject extends BmSetFull {
 }
 
 interface V2BeatmapsEventsObject {
+  events: EventsObject[];
+  reviewsConfig: {
+    max_blocks: number;
+  };
+  users: UserSmallGroups[];
+}
+
+interface EventsObject {
   id: number;
   type: string;
   comment: {
@@ -1081,38 +1102,38 @@ class Mods {
    */
   id(mod: number): string {
     const codes: { [key: string]: string } = {
-      1: 'NF',
-      2: 'EZ',
-      4: 'TD',
-      8: 'HD',
-      16: 'HR',
-      32: 'SD',
-      64: 'DT',
-      128: 'RX',
-      256: 'HT',
-      576: 'NC',
-      1024: 'FL',
-      2048: 'AT',
-      4096: 'SO',
-      8192: 'AP',
-      16416: 'PF',
-      32768: '4K',
-      65536: '5K',
-      131072: '6K',
-      262144: '7K',
-      524288: '8K',
-      1048576: 'Fl',
-      2097152: 'RD',
-      4194304: 'LM',
-      8388608: 'Target',
-      16777216: '9K',
-      33554432: 'KeyCoop',
-      67108864: '1K',
-      134217728: '3K',
-      268435456: '2K',
-      536870912: 'ScoreV2',
-      1073741824: 'LastMod',
-    },
+        1: 'NF',
+        2: 'EZ',
+        4: 'TD',
+        8: 'HD',
+        16: 'HR',
+        32: 'SD',
+        64: 'DT',
+        128: 'RX',
+        256: 'HT',
+        576: 'NC',
+        1024: 'FL',
+        2048: 'AT',
+        4096: 'SO',
+        8192: 'AP',
+        16416: 'PF',
+        32768: '4K',
+        65536: '5K',
+        131072: '6K',
+        262144: '7K',
+        524288: '8K',
+        1048576: 'Fl',
+        2097152: 'RD',
+        4194304: 'LM',
+        8388608: 'Target',
+        16777216: '9K',
+        33554432: 'KeyCoop',
+        67108864: '1K',
+        134217728: '3K',
+        268435456: '2K',
+        536870912: 'ScoreV2',
+        1073741824: 'LastMod',
+      },
       allMods: { [key: string]: number } = {
         ez: 0,
         hd: 1,
@@ -1360,7 +1381,7 @@ class Tools {
         params.acc =
           params.totalHits > 0
             ? (+hits[50] * 50 + +hits[100] * 100 + +hits.katu * 200 + (+hits[300] + hits.geki) * 300) /
-            (params.totalHits * 300)
+              (params.totalHits * 300)
             : 1;
 
         if (params.acc === 1) params.rank = hdfl === true ? 'XH' : 'X';
@@ -1984,7 +2005,15 @@ class V2 {
 
     this.accessToken = '';
 
-    this.api = axios.create();
+    this.api = axios.create({
+      baseURL: 'https://osu.ppy.sh/api/v2/',
+      headers: {
+        Authorization: `Bearer ${this.accessToken}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      timeout: 7e3,
+    });
     this.oauth = axios.create({
       baseURL: 'https://osu.ppy.sh/oauth/',
       timeout: 7e3,
@@ -2022,13 +2051,13 @@ class V2 {
         limit,
         'cursor[published_at]': cursorPublished,
         'cursor[_id]': cursorId,
-      }
+      },
     });
     return data;
   }
 
-  async changelog(): Promise<V2ChangelogObject> {
-    const { data } = await this.api.get(`/changelog`);
+  async changelog(maxId?: number): Promise<V2ChangelogObject> {
+    const { data } = await this.api.get(`/changelog`, { params: { max_id: maxId } });
     return data;
   }
 
@@ -2062,7 +2091,7 @@ class V2 {
     const { data } = await this.api.get(`/rankings/${modesType[mode]}/${rankingType[type]}`, {
       params: {
         'cursor[page]': page,
-      }
+      },
     });
     return data;
   }
@@ -2110,8 +2139,8 @@ class V2 {
     const { data } = await this.api.get(`/beatmapsets/search/`, {
       params: {
         'cursor[approved_date]': approvedDate,
-        'cursor[_id]': id
-      }
+        'cursor[_id]': id,
+      },
     });
     return data;
   }
