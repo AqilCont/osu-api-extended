@@ -23,7 +23,7 @@
 ## Initialization
 
 ```javascript
-const { V1, V2, mods, tools } = require('../dist/index');
+const { V1, V2, mods, tools } = require('osu-api-extended');
 const v1 = new V1('YOUR_OSU_KEY');
 const v2 = new V2('YOUR_CLIENT_ID', 'YOUR_CLIENT_SECRET');
 ```
