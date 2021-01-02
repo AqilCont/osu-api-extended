@@ -67,11 +67,6 @@ interface Replay {
   type?: string;
 }
 
-interface DiffFile {
-  id: number;
-  path: string;
-}
-
 interface PpCalc {
   id: number;
   mods?: number;
@@ -1274,16 +1269,19 @@ class Tools {
   }
 
   /**
-   * @param obj id: beatmap id\
-   * path: Path to replays folder
+   * @param id beatmap id
+   * @param path Path to replays folder
+   * @param name File name
    * @description Download .osu file of beatmap by id
    */
-  async diffFile(obj: DiffFile): Promise<boolean> {
+  async diffFile(id: number, path: string, name: string | number): Promise<boolean> {
     let file = '';
-    if (obj.path !== undefined) file = `${obj.path}/${obj.id}.osu`;
+    if (name === undefined) name = id;
+    if (path !== undefined) file = `${path}/${name}.osu`;
+    else file = `${name}.osu`;
     if (fs.existsSync(file)) return false;
     else {
-      const { data } = await axios.get(`https://osu.ppy.sh/osu/${obj.id}`);
+      const { data } = await axios.get(`https://osu.ppy.sh/osu/${id}`);
       fs.writeFileSync(file, data, 'utf-8');
       return true;
     }
