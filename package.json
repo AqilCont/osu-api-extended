@@ -1,11 +1,12 @@
 {
   "name": "osu-api-extended",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Package for advanced work with 'osu' api",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist/*"
+    "dist/*",
+    "flags.json"
   ],
   "scripts": {
     "build": "tsc",
