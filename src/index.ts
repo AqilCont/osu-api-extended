@@ -1098,38 +1098,38 @@ class Mods {
    */
   id(mod: number): string {
     const codes: { [key: string]: string } = {
-      1: 'NF',
-      2: 'EZ',
-      4: 'TD',
-      8: 'HD',
-      16: 'HR',
-      32: 'SD',
-      64: 'DT',
-      128: 'RX',
-      256: 'HT',
-      576: 'NC',
-      1024: 'FL',
-      2048: 'AT',
-      4096: 'SO',
-      8192: 'AP',
-      16416: 'PF',
-      32768: '4K',
-      65536: '5K',
-      131072: '6K',
-      262144: '7K',
-      524288: '8K',
-      1048576: 'Fl',
-      2097152: 'RD',
-      4194304: 'LM',
-      8388608: 'Target',
-      16777216: '9K',
-      33554432: 'KeyCoop',
-      67108864: '1K',
-      134217728: '3K',
-      268435456: '2K',
-      536870912: 'ScoreV2',
-      1073741824: 'LastMod',
-    },
+        1: 'NF',
+        2: 'EZ',
+        4: 'TD',
+        8: 'HD',
+        16: 'HR',
+        32: 'SD',
+        64: 'DT',
+        128: 'RX',
+        256: 'HT',
+        576: 'NC',
+        1024: 'FL',
+        2048: 'AT',
+        4096: 'SO',
+        8192: 'AP',
+        16416: 'PF',
+        32768: '4K',
+        65536: '5K',
+        131072: '6K',
+        262144: '7K',
+        524288: '8K',
+        1048576: 'Fl',
+        2097152: 'RD',
+        4194304: 'LM',
+        8388608: 'Target',
+        16777216: '9K',
+        33554432: 'KeyCoop',
+        67108864: '1K',
+        134217728: '3K',
+        268435456: '2K',
+        536870912: 'ScoreV2',
+        1073741824: 'LastMod',
+      },
       allMods: { [key: string]: number } = {
         ez: 0,
         hd: 1,
@@ -1225,7 +1225,7 @@ class Tools {
    * @description Return country name from country code
    */
   country(id: string): string {
-    const countrys: { flag: string; country: string }[] = JSON.parse(fs.readFileSync('./flags.json', 'utf-8'));
+    const countrys: { flag: string; country: string }[] = JSON.parse(fs.readFileSync('../flags.json', 'utf-8'));
     const find = countrys.filter((r) => r.flag === id);
 
     if (find.length > 0) return find[0].country;
@@ -1380,7 +1380,7 @@ class Tools {
         params.acc =
           params.totalHits > 0
             ? (+hits[50] * 50 + +hits[100] * 100 + +hits.katu * 200 + (+hits[300] + hits.geki) * 300) /
-            (params.totalHits * 300)
+              (params.totalHits * 300)
             : 1;
 
         if (params.acc === 1) params.rank = hdfl === true ? 'XH' : 'X';
@@ -1614,7 +1614,7 @@ class V1 {
   async user(obj: User): Promise<V1UserObject> | null {
     const { data } = await this.api.get('/get_user', { params: obj });
     if (data.length > 0) {
-      const events = data.events.map((d: any) => {
+      const events = data[0].events.map((d: any) => {
         return {
           display: {
             html: d.display_html,
@@ -1629,40 +1629,40 @@ class V1 {
         };
       });
       const info: V1UserObject = {
-        id: +data.user_id,
-        name: data.username,
-        pp: data.pp_raw,
-        acc: data.accuracy,
-        lvl: data.level,
-        join: data.join_date,
+        id: +data[0].user_id,
+        name: data[0].username,
+        pp: data[0].pp_raw,
+        acc: data[0].accuracy,
+        lvl: data[0].level,
+        join: data[0].join_date,
         country: {
-          flag: `https://osu.ppy.sh/images/flags/${data.country}.png`,
-          short: data.country,
-          full: tools.country(data.country),
+          flag: `https://osu.ppy.sh/images/flags/${data[0].country}.png`,
+          short: data[0].country,
+          full: tools.country(data[0].country),
         },
         play: {
-          count: +data.playcount,
-          time: +data.total_seconds_played,
+          count: +data[0].playcount,
+          time: +data[0].total_seconds_played,
         },
         hits: {
-          300: +data.count300,
-          100: +data.count100,
-          50: +data.count50,
+          300: +data[0].count300,
+          100: +data[0].count100,
+          50: +data[0].count50,
         },
         score: {
-          total: +data.total_score,
-          ranked: +data.ranked_score,
+          total: +data[0].total_score,
+          ranked: +data[0].ranked_score,
         },
         rank: {
-          global: +data.pp_rank,
-          country: +data.pp_country_rank,
+          global: +data[0].pp_rank,
+          country: +data[0].pp_country_rank,
         },
         ranks: {
-          ssh: +data.count_rank_ssh,
-          ss: +data.count_rank_ss,
-          sh: +data.count_rank_sh,
-          s: +data.count_rank_s,
-          a: +data.count_rank_a,
+          ssh: +data[0].count_rank_ssh,
+          ss: +data[0].count_rank_ss,
+          sh: +data[0].count_rank_sh,
+          s: +data[0].count_rank_s,
+          a: +data[0].count_rank_a,
         },
         events,
       };
@@ -2130,8 +2130,8 @@ class V2 {
   }
 
   async beatmaps_events(types: string[]): Promise<V2BeatmapsEventsObject> {
-    let params: string = "";
-    types.filter((r, i) => i === types.length - 1 ? params += `types[]=${r}` : params += `types[]=${r}&`);
+    let params: string = '';
+    types.filter((r, i) => (i === types.length - 1 ? (params += `types[]=${r}`) : (params += `types[]=${r}&`)));
 
     const { data } = await this.api.get(`/beatmapsets/events${params !== '' ? `?${params}` : ''}`);
     return data;
