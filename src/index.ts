@@ -4,6 +4,7 @@ import { AxiosInstance } from 'axios';
 const lzma = require('lzma-native');
 const osr = require('node-osr');
 const axios = require('axios');
+const path = require('path');
 const fs = require('fs');
 
 const modesType: string[] = ['osu', 'taiko', 'fruits', 'mania'];
@@ -1225,7 +1226,7 @@ class Tools {
    * @description Return country name from country code
    */
   country(id: string): string {
-    const countrys: { flag: string; country: string }[] = JSON.parse(fs.readFileSync('../flags.json', 'utf-8'));
+    const countrys: { flag: string; country: string }[] = JSON.parse(fs.readFileSync(path.join(__dirname, '../flags.json'), 'utf-8'));
     const find = countrys.filter((r) => r.flag === id);
 
     if (find.length > 0) return find[0].country;
