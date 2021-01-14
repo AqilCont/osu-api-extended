@@ -1226,7 +1226,9 @@ class Tools {
    * @description Return country name from country code
    */
   country(id: string): string {
-    const countrys: { flag: string; country: string }[] = JSON.parse(fs.readFileSync(path.join(__dirname, '../flags.json'), 'utf-8'));
+    const countrys: { flag: string; country: string }[] = JSON.parse(
+      fs.readFileSync(path.join(__dirname, '../flags.json'), 'utf-8'),
+    );
     const find = countrys.filter((r) => r.flag === id);
 
     if (find.length > 0) return find[0].country;
@@ -2132,7 +2134,9 @@ class V2 {
 
   async beatmaps_events(types: string[]): Promise<V2BeatmapsEventsObject> {
     let params: string = '';
-    types.filter((r, i) => (i === types.length - 1 ? (params += `types[]=${r}`) : (params += `types[]=${r}&`)));
+    const array = [];
+    array.push(types);
+    array.filter((r, i) => (i === array.length - 1 ? (params += `types[]=${r}`) : (params += `types[]=${r}&`)));
 
     const { data } = await this.api.get(`/beatmapsets/events${params !== '' ? `?${params}` : ''}`);
     return data;
