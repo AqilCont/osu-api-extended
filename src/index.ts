@@ -2090,11 +2090,8 @@ class V2 {
       variant?: string;
     },
   ): Promise<V2RankingsObject> {
-    const { data } = await this.api.get(`/rankings/${modesType[mode]}/${rankingType[type]}`, {
-      params: {
-        'cursor[page]': page,
-      },
-    });
+    const params = Object.assign({ 'cursor[page]': page }, obj);
+    const { data } = await this.api.get(`/rankings/${modesType[mode]}/${rankingType[type]}`, { params });
     return data;
   }
 
