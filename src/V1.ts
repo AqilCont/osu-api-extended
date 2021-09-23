@@ -2,12 +2,12 @@
 //import fs from 'fs';
 import "./types.ts"
 
-import { namespace } from "./get";
+import { namespace } from "./get.js";
 //import osr from "node-osr";
 //import lzma from 'lzma-native';
 
 import { id } from "./mods.js";
-import { country, accuracy } from "./tools";
+import { country, accuracy } from "./tools.js";
 
 export class V1 {
   key: string;

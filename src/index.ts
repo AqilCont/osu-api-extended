@@ -1,9 +1,12 @@
 //import { AxiosInstance } from 'axios';
 //import "./types.ts";
 
-export { V1 } from "./V1"
-export * from "./mods"
-export * from "./tools"
+export { V1 } from "./V1.js"
+export * from "./mods.js"
+export * from "./tools.js"
+
+// @minhducsun2002/node-osr-parser
+// lzma-native
 
 
 // const modesType: string[] = ['osu', 'taiko', 'fruits', 'mania'];
