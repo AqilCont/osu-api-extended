@@ -1,6 +1,6 @@
 # osu-api-extended
 
-[![npm](https://img.shields.io/npm/v/osu-api-extended?style=for-the-badge)](https://www.npmjs.org/package/osu-api-extended) [![npm bundle size](https://img.shields.io/bundlephobia/min/osu-api-extended?color=green&label=size&style=for-the-badge)](https://www.npmjs.org/package/osu-api-extended) [![npm](https://img.shields.io/npm/dw/osu-api-extended?style=for-the-badge)](http://npm-stat.com/charts.html?package=osu-api-extended) ![NPM](https://img.shields.io/npm/l/osu-api-extended?style=for-the-badge)
+[![npm](https://img.shields.io/npm/v/@aqilcont/osu-api-extended?style=for-the-badge)](https://www.npmjs.org/package/osu-api-extended) [![npm bundle size](https://img.shields.io/bundlephobia/min/@aqilcont/osu-api-extended?color=green&label=size&style=for-the-badge)](https://www.npmjs.org/package/osu-api-extended) [![npm](https://img.shields.io/npm/dw/@aqilcont/osu-api-extended?style=for-the-badge)](http://npm-stat.com/charts.html?package=osu-api-extended) ![NPM](https://img.shields.io/npm/l/@aqilcont/osu-api-extended?style=for-the-badge)
 
 # Features
 
@@ -11,7 +11,7 @@
 
 # Installation
 
-`npm i osu-api-extended`
+`npm i @aqilcont/osu-api-extended`
 
 # Usage
 
@@ -25,7 +25,7 @@
 ```javascript
 const { V1, V2, mods, tools } = require('osu-api-extended');
 const v1 = new V1('YOUR_OSU_KEY');
-const v2 = new V2('YOUR_CLIENT_ID', 'YOUR_CLIENT_SECRET');
+//const v2 = new V2('YOUR_CLIENT_ID', 'YOUR_CLIENT_SECRET');
 ```
 
 ## API v1
@@ -45,7 +45,7 @@ const v2 = new V2('YOUR_CLIENT_ID', 'YOUR_CLIENT_SECRET');
 
 ![https://i.imgur.com/VXKhD3q.gif](https://i.imgur.com/VXKhD3q.gif)
 
-## API v2
+<!--## API v2
 
 ```javascript
 (async () => {
@@ -57,12 +57,12 @@ const v2 = new V2('YOUR_CLIENT_ID', 'YOUR_CLIENT_SECRET');
     console.error(err);
   }
 })();
-```
+````
 
 #### TypeScript support
 
 ![https://i.imgur.com/PmeIIzY.gif](https://i.imgur.com/PmeIIzY.gif)
-
+-->
 # Endpoints
 
 ## Api v1
@@ -96,7 +96,7 @@ Get scores of user ob beatmap
 Get user data
 
 -------
-
+<!--
 ## Api v2
 
 ### `v2.news();`
@@ -160,7 +160,7 @@ Get user beatmaps
 Get user kudosu
 
 -------
-
+-->
 ## Tools
 
 ### `tools.country();`
@@ -194,11 +194,3 @@ Get name of mods from id
 ### `mods.name();`
 
 Get id of mods from name
-
-------
-
-# Dependencies
-
-- [node-osr](https://www.npmjs.com/package/node-osr) for reading replay file
-- [axios](https://www.npmjs.com/package/axios)
-
