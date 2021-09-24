@@ -2,6 +2,7 @@
 // HTTPS API
 import https from 'https'
 import { encode as qen } from 'querystring'
+import { RequestParams, RequestNamepsace, O } from './types'
 
 /**
  * Executes an HTTP request

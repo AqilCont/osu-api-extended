@@ -1,6 +1,6 @@
 
 //import fs from 'fs';
-import "./types.ts"
+import type { Best, Bm, MatchGame, MatchScore, Recent, RequestNamepsace, Scores, User, V1BeatmapObject, V1MatchObject, V1ScoresBestObject, V1ScoresObject, V1ScoresRecentObject, V1UserObject } from "./types"
 
 import { namespace } from "./get.js";
 //import osr from "node-osr";

@@ -2,7 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import { get } from './get.js';
-import "./types";
+import { AccObject, PpCalc, PpCalcObject } from './types';
 
 /**
  * @param id Country code

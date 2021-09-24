@@ -1,8 +1,8 @@
-type NulledString = string | null;
+export type NulledString = string | null;
 
-interface O<T> { [key: string]: T };
+export interface O<T> { [key: string]: T };
 
-interface AccObject {
+export interface AccObject {
   300: number;
   geki: number;
   100: number;
@@ -11,13 +11,13 @@ interface AccObject {
   0: number;
 }
 
-interface DefaultObj {
+export interface DefaultObj {
   u?: number;
   m?: number;
   type?: string;
 }
 
-interface Bm extends DefaultObj {
+export interface Bm extends DefaultObj {
   s?: number;
   b?: number;
   a?: number;
@@ -27,26 +27,26 @@ interface Bm extends DefaultObj {
   limit?: number;
 }
 
-interface User extends DefaultObj {
+export interface User extends DefaultObj {
   event_days?: number;
 }
 
-interface Scores extends DefaultObj {
+export interface Scores extends DefaultObj {
   b?: number;
   mods?: number;
   limit?: number;
 }
 
-interface Best extends DefaultObj {
+export interface Best extends DefaultObj {
   limit?: number;
   u: number;
 }
 
-interface Recent extends DefaultObj {
+export interface Recent extends DefaultObj {
   limit?: number;
 }
 
-interface Replay {
+export interface Replay {
   b: number;
   u: number;
   m?: number;
@@ -56,7 +56,7 @@ interface Replay {
   type?: string;
 }
 
-interface PpCalc {
+export interface PpCalc {
   id: number;
   mods?: number;
   combo?: number;
@@ -64,12 +64,12 @@ interface PpCalc {
   acc?: number;
 }
 
-interface IdNamed {
+export interface IdNamed {
   id: number;
   name: string;
 }
 
-interface ScoreObject {
+export interface ScoreObject {
   date: string;
   combo: {
     max: number;
@@ -88,7 +88,7 @@ interface ScoreObject {
   accuracy: number;
 }
 
-interface MatchGame {
+export interface MatchGame {
   id: number;
   time: {
     start: string;
@@ -105,7 +105,7 @@ interface MatchGame {
   scores: MatchScore[];
 }
 
-interface MatchScore {
+export interface MatchScore {
   team: IdNamed;
   slot: number;
   user: {
@@ -129,7 +129,7 @@ interface MatchScore {
   pass: string;
 }
 
-interface DiffObject {
+export interface DiffObject {
   id: number;
   diff: string;
   mode: IdNamed;
@@ -163,7 +163,7 @@ interface DiffObject {
   pass: number;
 }
 
-interface Events {
+export interface Events {
   id: {
     diff: number;
     set: number;
@@ -176,7 +176,7 @@ interface Events {
   epicfactor: number;
 }
 
-interface RanksGrades {
+export interface RanksGrades {
   ssh: number;
   ss: number;
   sh: number;
@@ -184,7 +184,7 @@ interface RanksGrades {
   a: number;
 }
 
-interface BeatmapCoversObj {
+export interface BeatmapCoversObj {
   cover: string;
   'cover@2x': string;
   card: string;
@@ -195,7 +195,7 @@ interface BeatmapCoversObj {
   'slimcover@2x': string;
 }
 
-interface NewsPosts {
+export interface NewsPosts {
   id: number;
   author: string;
   edit_url: string;
@@ -207,7 +207,7 @@ interface NewsPosts {
   preview: string;
 }
 
-interface StreamsObject {
+export interface StreamsObject {
   id: number;
   name: string;
   display_name: string;
@@ -228,7 +228,7 @@ interface StreamsObject {
   user_count: number;
 }
 
-interface BuildsObject {
+export interface BuildsObject {
   id: number;
   version: string;
   display_version: string;
@@ -243,7 +243,7 @@ interface BuildsObject {
   changelog_entries: ChangelogEntries[];
 }
 
-interface ChangelogEntries {
+export interface ChangelogEntries {
   id: number;
   repository: string;
   github_pull_request_id: number;
@@ -265,7 +265,7 @@ interface ChangelogEntries {
   };
 }
 
-interface UserSmall {
+export interface UserSmall {
   avatar_url: string;
   country_code: string;
   default_group: string;
@@ -280,7 +280,7 @@ interface UserSmall {
   username: string;
 }
 
-interface UserSmallGroups extends UserSmall {
+export interface UserSmallGroups extends UserSmall {
   groups: {
     id: number;
     identifier: string;
@@ -293,7 +293,7 @@ interface UserSmallGroups extends UserSmall {
   }[];
 }
 
-interface UserShort {
+export interface UserShort {
   avatar_url: string;
   country_code: string;
   default_group: string;
@@ -317,7 +317,7 @@ interface UserShort {
   };
 }
 
-interface BmSetShort {
+export interface BmSetShort {
   artist: string;
   artist_unicode: string;
   covers: BeatmapCoversObj;
@@ -334,11 +334,11 @@ interface BmSetShort {
   user_id: number;
   video: boolean;
 }
-interface BmSetShortUser extends BmSetShort {
+export interface BmSetShortUser extends BmSetShort {
   user: UserSmall;
 }
 
-interface BmSetFull {
+export interface BmSetFull {
   artist: string;
   artist_unicode: string;
   covers: BeatmapCoversObj;
@@ -375,14 +375,14 @@ interface BmSetFull {
   submitted_date: string;
   tags: string;
 }
-interface BmSetFullRatings extends BmSetFull {
+export interface BmSetFullRatings extends BmSetFull {
   ratings: number[];
 }
-interface BmSetFullBm extends BmSetFull {
+export interface BmSetFullBm extends BmSetFull {
   beatmaps: BmShort[];
 }
 
-interface BmShort {
+export interface BmShort {
   difficulty_rating: number;
   id: number;
   mode: string;
@@ -409,10 +409,10 @@ interface BmShort {
   status: string;
   url: string;
 }
-interface BmShortCombo extends BmShort {
+export interface BmShortCombo extends BmShort {
   max_combo: number;
 }
-interface BmShortComboFails extends BmShort {
+export interface BmShortComboFails extends BmShort {
   failtimes: {
     fail: number[];
     exit: number[];
@@ -420,7 +420,7 @@ interface BmShortComboFails extends BmShort {
   max_combo: number;
 }
 
-interface RankingObject {
+export interface RankingObject {
   level: {
     current: number;
     progress: number;
@@ -440,7 +440,7 @@ interface RankingObject {
   user: UserShort;
 }
 
-interface RankingObjectCountry {
+export interface RankingObjectCountry {
   code: string;
   active_users: number;
   play_count: number;
@@ -452,7 +452,7 @@ interface RankingObjectCountry {
   };
 }
 
-interface PpCalcObject {
+export interface PpCalcObject {
   id: {
     set: number;
     diff: number;
@@ -559,7 +559,7 @@ interface PpCalcObject {
  * ---- ==== V1 api
  */
 
-interface V1BeatmapObject {
+export interface V1BeatmapObject {
   id: {
     set: number;
     diff: number;
@@ -617,7 +617,7 @@ interface V1BeatmapObject {
   };
 }
 
-interface V1UserObject {
+export interface V1UserObject {
   id: number;
   name: string;
   pp: number;
@@ -656,7 +656,7 @@ interface V1UserObject {
   events: Events[];
 }
 
-interface V1ScoresObject extends ScoreObject {
+export interface V1ScoresObject extends ScoreObject {
   user: IdNamed;
   score: {
     total: number;
@@ -666,7 +666,7 @@ interface V1ScoresObject extends ScoreObject {
   replay: number;
 }
 
-interface V1ScoresBestObject extends ScoreObject {
+export interface V1ScoresBestObject extends ScoreObject {
   beatmap: number;
   user: {
     id: number;
@@ -679,7 +679,7 @@ interface V1ScoresBestObject extends ScoreObject {
   replay: number;
 }
 
-interface V1ScoresRecentObject extends ScoreObject {
+export interface V1ScoresRecentObject extends ScoreObject {
   beatmap: number;
   user: {
     id: number;
@@ -689,7 +689,7 @@ interface V1ScoresRecentObject extends ScoreObject {
   };
 }
 
-interface V1MatchObject {
+export interface V1MatchObject {
   match: {
     id: number;
     name: string;
@@ -705,7 +705,7 @@ interface V1MatchObject {
  * ---- ==== V2 api
  */
 
-interface V2NewsObject {
+export interface V2NewsObject {
   news_posts: NewsPosts[];
   search: {
     cursor: string | null;
@@ -717,7 +717,7 @@ interface V2NewsObject {
   };
 }
 
-interface V2ChangelogObject {
+export interface V2ChangelogObject {
   streams: StreamsObject[];
   builds: BuildsObject[];
   search: {
@@ -729,7 +729,7 @@ interface V2ChangelogObject {
   };
 }
 
-interface V2RankingsObject {
+export interface V2RankingsObject {
   beatmapsets?: BmSetFullBm;
   cursor?: {
     page: number;
@@ -738,7 +738,7 @@ interface V2RankingsObject {
   total?: number;
 }
 
-interface V2SpotlightsObject {
+export interface V2SpotlightsObject {
   spotlights: {
     id: boolean;
     name: string;
@@ -749,7 +749,7 @@ interface V2SpotlightsObject {
   }[];
 }
 
-interface V2SeasonalBackgroundsObject {
+export interface V2SeasonalBackgroundsObject {
   ends_at: string;
   backgrounds: {
     url: string;
@@ -757,11 +757,11 @@ interface V2SeasonalBackgroundsObject {
   }[];
 }
 
-interface V2BeatmapObject extends BmShortComboFails {
+export interface V2BeatmapObject extends BmShortComboFails {
   beatmapset: BmSetFullRatings;
 }
 
-interface V2BeatmapScoresObject {
+export interface V2BeatmapScoresObject {
   id: number;
   best_id: number;
   user_id: number;
@@ -788,7 +788,7 @@ interface V2BeatmapScoresObject {
   user: UserShort;
 }
 
-interface V2BeatmapSetObject extends BmSetFull {
+export interface V2BeatmapSetObject extends BmSetFull {
   beatmaps: BmShortComboFails[];
   converts: BmShortComboFails[];
   description: {
@@ -801,7 +801,7 @@ interface V2BeatmapSetObject extends BmSetFull {
   user: UserSmall;
 }
 
-interface V2BeatmapsEventsObject {
+export interface V2BeatmapsEventsObject {
   events: EventsObject[];
   reviewsConfig: {
     max_blocks: number;
@@ -809,7 +809,7 @@ interface V2BeatmapsEventsObject {
   users: UserSmallGroups[];
 }
 
-interface EventsObject {
+export interface EventsObject {
   id: number;
   type: string;
   comment: {
@@ -859,11 +859,11 @@ interface EventsObject {
   };
 }
 
-interface V2BeatmapsSearchObject extends BmSetFull {
+export interface V2BeatmapsSearchObject extends BmSetFull {
   beatmaps: BmShortCombo[];
 }
 
-interface V2UserObject {
+export interface V2UserObject {
   avatar_url: string;
   country_code: string;
   default_group: string;
@@ -993,7 +993,7 @@ interface V2UserObject {
   };
 }
 
-interface V2UserRecentActivityObject {
+export interface V2UserRecentActivityObject {
   created_at: string;
   id: number;
   type: string;
@@ -1028,7 +1028,7 @@ interface V2UserRecentActivityObject {
   };
 }
 
-interface V2UserScoresObject {
+export interface V2UserScoresObject {
   id: number;
   best_id: null | number;
   user_id: number;
@@ -1060,11 +1060,11 @@ interface V2UserScoresObject {
   user: UserSmall;
 }
 
-interface V2UserBeatmapsObject extends BmSetFull {
+export interface V2UserBeatmapsObject extends BmSetFull {
   beatmaps: BmShort[];
 }
 
-interface V2UserKudosuObject {
+export interface V2UserKudosuObject {
   id: number;
   action: string;
   amount: number;
@@ -1080,14 +1080,14 @@ interface V2UserKudosuObject {
   };
 }
 
-interface RequestParams {
+export interface RequestParams {
   method?: string,
   headers?: { [key: string]: string },
   data?: string,
-  params?: any | [any, ...any]
+  params?: object | [object, ...object[]] // any | [any, ...any]
 }
 
 
-interface RequestNamepsace {
-  (url: string, { params }: { params?: any }): Promise<any>
+export interface RequestNamepsace {
+  (url: string, { params }: { params?: object }): Promise<any>
 }
